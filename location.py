@@ -50,7 +50,7 @@ class Config:
         elif user_dir().exists():
             return Config.from_dir(user_dir())
         else:
-            return Config(0, 0, 0, None)  # 'Greenwich'
+            return Config(51.48, 0, 0, None)  # 'Greenwich'
 
     def save(self):
         assert self.path

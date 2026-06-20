@@ -9,7 +9,7 @@ to the expected directories `/etc/location/` or `~/.config/location/`.
 You can also set the (user) configuration programmatically
 (and then copy to `/etc/location`), see below.
 
-If you do not set a location, Greenwich (`0, 0`) is used.
+If you do not set a location, Greenwich (`51.48, 0`) is used.
 
 ## Usage
 To use, simply call `location.get()`:
