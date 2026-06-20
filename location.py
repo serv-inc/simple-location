@@ -7,15 +7,19 @@ from typing import Optional
 
 
 def user_dir() -> pathlib.Path:
+    """user location storage"""
     return pathlib.Path.home() / ".config" / "location"
 
 
 def system_dir() -> pathlib.Path:
+    """system location storage"""
     return pathlib.Path("/etc/location")
 
 
 @dataclass
 class Config:
+    """one location"""
+
     lat: float
     lon: float
     alt: float = 0.0
@@ -47,10 +51,9 @@ class Config:
     def load() -> "Config":
         if system_dir().exists():
             return Config.from_dir(system_dir())
-        elif user_dir().exists():
+        if user_dir().exists():
             return Config.from_dir(user_dir())
-        else:
-            return Config(51.48, 0, 0, None)  # 'Greenwich'
+        return Config(51.48, 0, 0, None)  # 'Greenwich'
 
     def save(self):
         assert self.path
