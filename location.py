@@ -27,18 +27,22 @@ class Config:
 
     @property
     def latitude(self) -> float:
+        """latitude, that is degrees north/south of the equator"""
         return self.lat
 
     @property
     def longitude(self) -> float:
+        """longitude, that is degrees east/west of greenwich"""
         return self.lon
 
     @property
     def altitude(self) -> float:
+        """altitude in meters"""
         return self.alt
 
     @staticmethod
     def from_dir(d: pathlib.Path) -> "Config":
+        """load latitude, longitude, and possibly altitude from directory"""
         lat = float((d / "latitude").open().read())
         lon = float((d / "longitude").open().read())
         try:
@@ -49,6 +53,7 @@ class Config:
 
     @staticmethod
     def load() -> "Config":
+        """load default paths"""
         if system_dir().exists():
             return Config.from_dir(system_dir())
         if user_dir().exists():
@@ -56,6 +61,7 @@ class Config:
         return Config(51.48, 0, 0, None)  # 'Greenwich'
 
     def save(self):
+        """save to set path"""
         assert self.path
         if not self.path.exists():
             self.path.mkdir()
@@ -65,6 +71,7 @@ class Config:
 
 
 def get():
+    """@return default location"""
     return Config.load()
 
 
