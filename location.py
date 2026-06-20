@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 """location set and retrieve"""
+
 import pathlib
 from dataclasses import dataclass
 from typing import Optional
@@ -58,3 +59,11 @@ class Config:
         (self.path / "latitude").open("w").write(str(self.lat))
         (self.path / "longitude").open("w").write(str(self.lon))
         (self.path / "altitude").open("w").write(str(self.alt))
+
+
+def get():
+    return Config.load()
+
+
+if __name__ == "__main__":
+    print(Config.load())
